@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+
+  # This is a test comment
+
   STOCK = ["In Stock", "Out of Stock"]
   # This method associates the attribute ":avatar" with a file attachment
   has_attached_file :photo,
