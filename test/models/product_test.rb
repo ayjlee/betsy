@@ -97,6 +97,7 @@ describe Product do
       let(:transportation) { categories(:transportation) }
       let(:weekend_yacht) {products(:yacht)}
       let(:cosmetics_cat) { categories(:cosmetics)}
+
       it "returns a collection of Products of the appropriate category" do
         weekend_yacht.categories << transportation
         Product.by_category(transportation).count.must_equal 1
@@ -147,7 +148,21 @@ describe Product do
 
         merchant_hash.must_be_kind_of Hash
         merchant_hash.keys.count.must_equal 4
+      end
+    end
 
+    describe "Product#avg_rating" do
+      let(:soap_review1) {reviews(:one)}
+      let(:soap_review2) {reviews(:two)}
+
+      let(:product_no_review) {products(:chocolate)}
+
+      it "returns correct average rating" do
+        product.avg_rating.must_equal 3
+      end
+
+      it "returns 0 rating for products with no review" do
+        product_no_review.avg_rating.must_equal 0
       end
 
     end
@@ -158,10 +173,26 @@ describe Product do
 
         category_hash.must_be_kind_of Hash
         category_hash.keys.count.must_equal 4
+      end
+    end
 
+    describe "Product#instock" do
+
+      let(:product_quant0) { products(:candy1)}
+      let(:outstock_product) { products(:candy2)}
+
+      it "returns true if product quantity is greater than 0 and stock is: In Stock" do
+        product.instock.must_equal true
+      end
+
+      it "returns false if product is quantity is 0" do
+        product_quant0.instock.must_equal false
+      end
+
+      it "returns false if product is stock is: Out of Stock" do
+        outstock_product.instock.must_equal false
       end
     end
 
   end
-
 end
