@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
   def home
-    @showcase = Product.all.sample(3)
+    @showcase = Product.find_instock.sample(3)
   end
 end
