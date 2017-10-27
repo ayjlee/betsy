@@ -11,8 +11,7 @@ describe ReviewsController do
   let(:merchant_product_review) {reviews(:candy2_review)}
 
   describe "reviews#index" do
-    # #action
-    # get reviews_path
+    #get reviews_path
     # #assert
     # must_respond_with :success
   end
@@ -309,15 +308,7 @@ describe ReviewsController do
     it "does not allow a merchant to delete others' review " do
       login(merchant)
       get root_path
-
-      # review_data = {
-      #   review: {
-      #     product_id: product.id,
-      #     rating: 5,
-      #     user_id: nil
-      #   }
-      # }
-
+      
       start_count = Review.count
       delete review_path(review)
 

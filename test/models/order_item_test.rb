@@ -48,11 +48,6 @@ describe OrderItem do
         invalid_orderitem.errors.messages.must_include :quantity
       end
     end
-
-    # it "quantity in order cannot exceed quantity available" do
-    #
-    #
-    # end
   end
 
 end

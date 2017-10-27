@@ -62,40 +62,11 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
   end
-  # def destroy
-  #   Order.destroy(params[:id])
-  #   redirect_to orders_path
-  # end
 
   private
+
   def order_params
     params.require(:order).permit(:status, :total, :customer_name, :email, :mailing_address, :zipcode, :cc_number, :cc_expiration_date, :cc_cvv)
   end
 
-  # def inventory_adjust(order)
-  #
-  #
-  #
-  #
-  #
-  #     quantity = item.quantity
-  #     product = Product.find_by_id(item.product_id)
-  #     if product
-  #       if product.quantity < quantity
-  #         flash[:status] = :failure
-  #         flash[:message] = "Error - quantity sought exceed quantity available. Please revise your order"
-  #         render :edit
-  #       else
-  #         product.quantity -= quantity
-  #         product.save
-  #       end
-  #     end
-  #   end
-  # end
-
-
-  private
-  def order_params
-    params.require(:order).permit(:status, :total, :customer_name, :email, :mailing_address, :zipcode, :cc_number, :cc_expiration_date, :cc_cvv)
-  end
 end

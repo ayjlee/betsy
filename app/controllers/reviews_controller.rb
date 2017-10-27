@@ -85,13 +85,11 @@ class ReviewsController < ApplicationController
       redirect_to root_path
     end
   end
-
+  
   private
 
   def find_review
     @review = Review.find_by_id(params[:id])
-    # above same as:
-    # @review = Review.find_by(id: params[:id])
     render_404 unless @review
   end
 

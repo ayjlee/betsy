@@ -1,7 +1,6 @@
 class Product < ApplicationRecord
 
   STOCK = ["In Stock", "Out of Stock"]
-  # This method associates the attribute ":avatar" with a file attachment
   has_attached_file :photo,
   :default_url => 'glitzy_default.png',
   styles: {
@@ -11,7 +10,6 @@ class Product < ApplicationRecord
     large: '400x400>'
   }
 
-  # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
   has_many :reviews
@@ -22,7 +20,6 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
   validates_uniqueness_of :name, scope: [:category]
-  # validates :category, presence: true, allow_nil: false
   validates :price, presence: true, numericality: true,
   :format => { :with => /^\d{1,4}(\.\d{0,2})?$/, multiline: true }
   validates :quantity, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
@@ -36,16 +33,13 @@ class Product < ApplicationRecord
   end
 
   def self.to_merchant_hash
-    #refactor needed
     data = {}
     merchants_with_products= (User.all).select{|merchant| merchant.products.count > 0}
 
     merchants_with_products.each do |merchant|
       data[merchant.name] = by_merchant(merchant)
     end
-
     return data
-
   end
 
   def self.by_category(category)
@@ -62,14 +56,8 @@ class Product < ApplicationRecord
     else
       return merchant.products.select {|prod| prod.instock }
     end
-    # return self.where(user: merchant)
-
-    # return merchant.products
   end
 
-  # def order_by_ratings(products)
-  #   products.order(avg_rating: avg_rating(product)).limit(10)
-  # end
 
   def avg_rating
     if (self.reviews).count > 0
@@ -78,7 +66,6 @@ class Product < ApplicationRecord
       product_reviews.each do |review|
         sum_ratings += review.rating
       end
-      # sum_ratings = (self.reviews.rating).reduce(:+)
       avg = sum_ratings/(product_reviews.count)
       return avg
     else

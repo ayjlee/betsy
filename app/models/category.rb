@@ -8,5 +8,5 @@ class Category < ApplicationRecord
       Category.find_by(id: c)
     end.compact
   end
-
+  
 end

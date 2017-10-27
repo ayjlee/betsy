@@ -6,12 +6,6 @@ describe Review do
 
   describe "relations" do
 
-    # it "has a user" do
-      # review = reviews(:one)
-      # review.must_respond_to :user
-      # review.must_be_kind_of Review
-      # review.user.must_be_kind_of User
-    # end
 
     it "has a product" do
       review.must_respond_to :product

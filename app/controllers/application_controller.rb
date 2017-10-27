@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   before_action :current_order
 
   def render_404
-    # DPR: supposedly this will actually render a 404 page in production
     render file: "#{Rails.root}/public/404.html" , status: :not_found
   end
 
@@ -35,7 +34,6 @@ class ApplicationController < ActionController::Base
         end
         return
       else
-        # session[:order_items_count] = @order.order_items.count
         create_new_order
       end
     end

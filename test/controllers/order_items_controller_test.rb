@@ -80,11 +80,11 @@ describe OrderItemsController do
 
       start_count = OrderItem.count
       post product_order_items_path(products(:tears).id), params: order_item_data
-  flash[:result_text].must_equal "Error - products not added to your order"
+      flash[:result_text].must_equal "Error - products not added to your order"
       must_respond_with :bad_request
       OrderItem.count.must_equal start_count
+    end
   end
-end
 
   describe "OrderItem#update" do
 
@@ -128,7 +128,7 @@ end
 
       #Assert
       must_respond_with :bad_request
-flash[:result_text].must_equal "Error: You must choose a quantity less than or equal to the available quantity (#{product.quantity})"
+      flash[:result_text].must_equal "Error: You must choose a quantity less than or equal to the available quantity (#{product.quantity})"
       OrderItem.find(chocolate1.id).quantity.must_equal original_quantity
 
     end

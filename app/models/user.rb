@@ -8,7 +8,6 @@ class User < ApplicationRecord
   validates :provider, presence: true, inclusion: { in: %w(github) }
 
   def total_revenue_by_status(status)
-    # @orders = Order.by_user(user).select { |order| order.status == "paid"}
     @order_items = self.order_items
     @revenue = 0.0
     @order_items.each do |item|
@@ -22,7 +21,7 @@ class User < ApplicationRecord
   def total_revenue
     @total_revenue = 0.0
 
-    statuses = Order::STATUS #["incomplete", "paid", "complete"]
+    statuses = Order::STATUS
     statuses.each do |status|
       @total_revenue += self.total_revenue_by_status(status)
     end
