@@ -228,11 +228,10 @@ flash[:result_text].must_equal "Error: You must choose a quantity less than or e
 
     it "changes order_item's shipping status to: shipped" do
       login(merchant)
-
       merchant_order_item.shipped.must_equal "not shipped"
 
       patch item_shipped_path(merchant_order_item.id)
-
+      merchant_order_item.reload
       merchant_order_item.shipped.must_equal "shipped"
     end
   end
