@@ -1,4 +1,4 @@
-# bEtsy
+# bEtsy Completed - See it here >>>> https://glitzy-store.herokuapp.com/
 [b]Etsy will be an online store where a wide variety of products can be listed and sold by any user. In this project we will focus on reinforcing the major components of Rails, Model Validation, as well as introducing some more complex logic such as user authentication.
 
 This is a [Stage 3](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) project requiring you to expand upon what you have learned in class.
